@@ -1,0 +1,50 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "no-restricted-syntax": "off",
+    "@typescript-eslint/restrict-plus-operands": "error",
+    "@typescript-eslint/interface-name-prefix": ["error", "always"],
+    "@typescript-eslint/array-type": ["error", "array-simple"],
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": [
+          "private-static-field",
+          "protected-static-field",
+          "public-static-field",
+          "private-static-method",
+          "protected-static-method",
+          "public-static-method",
+          "private-instance-field",
+          "protected-instance-field",
+          "public-instance-field",
+          "private-constructor",
+          "private-instance-method",
+          "protected-constructor",
+          "protected-instance-method",
+          "public-constructor",
+          "public-instance-method"
+        ]
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "constructors": "no-public"
+        }
+      }
+    ]
+  }
+}

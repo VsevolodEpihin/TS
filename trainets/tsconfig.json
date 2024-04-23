@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": false,
+    "jsx": "preserve",
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "removeComments": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "baseUrl": ".",
+    "sourceMap": true,
+    "types": [ ],
+    "typeRoots": [
+      "./src",
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "es2015",
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

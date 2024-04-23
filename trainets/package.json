@@ -1,0 +1,23 @@
+{
+  "name": "ts-task-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "build": "tsc -p tsconfig.json",
+    "run": "for file in `find ./dist -name *.js`; do echo $file; node $file; echo '------------------------'; done;",
+    "start": "npm run lint && npm run build && npm run run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "typescript": "^3.5.3"
+  }
+}
