@@ -6,7 +6,8 @@ enum SizeProduct {
 }
 
 type ProductSelect = Banana | IceCream
-interface BaseProduct {
+
+interface BaseProductType {
   name: string
   price: number
   discount: number
@@ -14,8 +15,9 @@ interface BaseProduct {
 
 interface Shop <T> {
   items: T[]
-  (item: T): T[]
+  (item: T): number
 }
+
 class Shop <T> implements Shop <T> {
   items: T[] = []
 
@@ -28,7 +30,7 @@ class Shop <T> implements Shop <T> {
   }
 }
 
-class BaseProduct implements BaseProduct {
+class BaseProduct implements BaseProductType {
   name: string
 
   price: number
@@ -69,3 +71,4 @@ shop.addGood(iceCream)
 shop.addGood(banana)
 
 console.log(shop.goods)
+

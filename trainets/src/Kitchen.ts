@@ -5,25 +5,25 @@ enum TypePasts {
     macaroni = 'macaroni',
 }
 
-interface Pizza {
-    hasPeperoni: boolean,
+interface PizzaType {
+    hasPepperoni: boolean,
     hasSauce: boolean,
     hasCheese: boolean,
     bake():void
 }
 
-interface Pasta {
+interface PastaType {
     pastaType: string,
     hasSauce: boolean,
     hasCheese: boolean,
     cook():void
 }
 
-interface Kitchen {
+interface KitchenType {
     makeDish(dish:object):void
 }
 
-class Pizza implements Pizza {
+class Pizza implements PizzaType {
     hasPepperoni;
   
     hasSauce;
@@ -43,7 +43,7 @@ class Pizza implements Pizza {
     }
   }
   
-  class Pasta implements Pasta {
+  class Pasta implements PastaType {
     pastaType;
   
     hasSauce;
@@ -57,14 +57,13 @@ class Pizza implements Pizza {
         this.hasCheese = hasCheese;
         this.hasSauce = hasSauce;
     }
-  
+ 
     cook(): void {
         setTimeout(console.log, this.cookTime, 'Enjoy your pasta!');
     }
   }
   
-  
-  class Kitchen implements Kitchen {
+  class Kitchen implements KitchenType {
     makeDish(dish: object) {
         if (dish instanceof Pasta) {
             dish.cook();
@@ -80,5 +79,5 @@ class Pizza implements Pizza {
   const pasta = new Pasta(TypePasts.spaghetti, true, true);
   
   kitchen.makeDish(pasta);
-  kitchen.makeDish(pasta);
+  kitchen.makeDish(pizza);
   
