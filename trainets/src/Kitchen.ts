@@ -1,66 +1,84 @@
 
-enum typePasts{
+enum TypePasts {
     spaghetti = 'spaghetti',
     penne = 'penne',
     macaroni = 'macaroni',
 }
 
-class Pizza {
-  hasPepperoni:boolean;
-
-  hasSauce:boolean;
-
-  hasCheese:boolean;
-
-  bakeTime = 30;
-
-  constructor(hasPepperoni:boolean, hasSauce:boolean, hasCheese:boolean) {
-      this.hasPepperoni = hasPepperoni;
-      this.hasSauce = hasSauce;
-      this.hasCheese = hasCheese;
-  }
-
-  bake() {
-      setTimeout(console.log, this.bakeTime, 'Enjoy your pizza!');
-  }
+interface Pizza {
+    hasPeperoni: boolean,
+    hasSauce: boolean,
+    hasCheese: boolean,
+    bake():void
 }
 
-class Pasta {
-  pastaType:typePasts;
-
-  hasSauce:boolean;
-
-  hasCheese:boolean;
-
-  cookTime: number = 30;
-
-  constructor(pastaType:typePasts, hasSauce:boolean, hasCheese:boolean) {
-      this.pastaType = pastaType;
-      this.hasCheese = hasCheese;
-      this.hasSauce = hasSauce;
-  }
-
-  cook() {
-      setTimeout(console.log, this.cookTime, 'Enjoy your pasta!');
-  }
+interface Pasta {
+    pastaType: string,
+    hasSauce: boolean,
+    hasCheese: boolean,
+    cook():void
 }
 
-
-class Kitchen {
-  makeDish(dish:object) : never {
-      if (dish instanceof Pasta) {
-          dish.cook();
-      } else if (dish instanceof Pizza) {
-          dish.bake();
-      }
-      throw new Error('Unknown dish');
-  }
+interface Kitchen {
+    makeDish(dish:object):void
 }
 
-const kitchen = new Kitchen();
-const pizza = new Pizza(true, true, false);
-const pasta = new Pasta(typePasts.spaghetti, true, true);
-
-kitchen.makeDish(pasta);
-kitchen.makeDish(pasta);
-
+class Pizza implements Pizza {
+    hasPepperoni;
+  
+    hasSauce;
+  
+    hasCheese;
+  
+    bakeTime: number = 30;
+  
+    constructor(hasPepperoni: boolean, hasSauce: boolean, hasCheese: boolean) {
+        this.hasPepperoni = hasPepperoni;
+        this.hasSauce = hasSauce;
+        this.hasCheese = hasCheese;
+    }
+  
+    bake(): void {
+        setTimeout(console.log, this.bakeTime, 'Enjoy your pizza!');
+    }
+  }
+  
+  class Pasta implements Pasta {
+    pastaType;
+  
+    hasSauce;
+  
+    hasCheese;
+  
+    cookTime: number = 30;
+  
+    constructor(pastaType: string, hasSauce: boolean, hasCheese: boolean) {
+        this.pastaType = pastaType;
+        this.hasCheese = hasCheese;
+        this.hasSauce = hasSauce;
+    }
+  
+    cook(): void {
+        setTimeout(console.log, this.cookTime, 'Enjoy your pasta!');
+    }
+  }
+  
+  
+  class Kitchen implements Kitchen {
+    makeDish(dish: object) {
+        if (dish instanceof Pasta) {
+            dish.cook();
+        } else if (dish instanceof Pizza) {
+            dish.bake();
+        }
+        throw new Error('Unknown dish');
+    }
+  }
+  
+  const kitchen = new Kitchen();
+  const pizza = new Pizza(true, true, false);
+  const pasta = new Pasta(TypePasts.spaghetti, true, true);
+  
+  kitchen.makeDish(pasta);
+  kitchen.makeDish(pasta);
+  

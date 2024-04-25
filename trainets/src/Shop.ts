@@ -1,77 +1,71 @@
-enum sizeProduct{
+
+enum SizeProduct {
   small = 'small',
   large = 'large',
-  medium = 'medium',
+  medium = 'medium'
 }
-type sizeProductUnion = 'small' | 'large' | 'medium'
 
-class Shop {
-  items:object[] = [];
+type ProductSelect = Banana | IceCream
+interface BaseProduct {
+  name: string
+  price: number
+  discount: number
+}
 
-  addGood(item:object):number{
-      return this.items.push(item);
+interface Shop <T> {
+  items: T[]
+  (item: T): T[]
+}
+class Shop <T> implements Shop <T> {
+  items: T[] = []
+
+  addGood (item: T): number {
+    return this.items.push(item)
   }
 
-  get goods():object[] {
-      return this.items;
+  get goods (): T[] {
+    return this.items
   }
 }
 
-interface BaseProduct{
-  name:string,
-}
+class BaseProduct implements BaseProduct {
+  name: string
 
-interface IBaseProduct{
-  name:string,
-  price:number,
-  discount:number,
-}
+  price: number
 
-interface IBanana extends IBaseProduct{
-  size: sizeProductUnion;
-}
+  discount: number
 
-class BaseProduct implements IBaseProduct {
-  name;
-
-  price;
-
-  discount;
-
-  constructor(name:string, price:number, discount:number) {
-      this.name = name;
-      this.price = price;
-      this.discount = discount;
+  constructor (name: string, price: number, discount: number) {
+    this.name = name
+    this.price = price
+    this.discount = discount
   }
 }
 
 class Banana extends BaseProduct {
+  size: SizeProduct
 
-  price: number;
-  discount: number;
-  size:sizeProductUnion;
-
-  constructor(price:number, discount:number, size:sizeProductUnion) { 
-      super('banan', price, discount);
-      this.size = size;
+  constructor (price: number, discount: number, size: SizeProduct) {
+    super('banana', price, discount)
+    this.size = size
   }
 }
 
 class IceCream extends BaseProduct {
-  withGlace:boolean;
+  withGlace: boolean
 
-  constructor(price:number, discount:number, withGlace:boolean) {
-      super('iceCream', price, discount);
-      this.withGlace = withGlace;
+  constructor (price: number, discount: number, withGlace: boolean) {
+    super('iceCream', price, discount)
+    this.withGlace = withGlace
   }
 }
 
-const shop = new Shop();
+const shop = new Shop<ProductSelect>()
 
-const iceCream = new IceCream(10, 0, true);
-const banana = new Banana(5, 0.1, 'small');
+const iceCream = new IceCream(10, 0, true)
+const banana = new Banana(5, 0.1, SizeProduct.small)
 
-shop.addGood(iceCream);
-shop.addGood(banana);
+shop.addGood(iceCream)
+shop.addGood(banana)
 
-console.log(shop.goods);
+console.log(shop.goods)
