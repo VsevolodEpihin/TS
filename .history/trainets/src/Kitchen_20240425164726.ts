@@ -62,7 +62,7 @@ class Pasta implements ProductPasta {
   }
 }
 
-class Kitchen implements KitchenType{
+class Kitchen {
   makeDish (dish: selectProduct): void {
     if (dish instanceof Pasta) {
       dish.cook()
