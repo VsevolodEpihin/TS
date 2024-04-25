@@ -61,7 +61,7 @@ class Kitchen {
     if (dish instanceof Pasta) {
       dish.cook()
     } else{
-      dish.bake()
+        dish.bake()
     }
   }
 }
