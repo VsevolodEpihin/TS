@@ -14,8 +14,8 @@ interface BaseProductType {
 }
 
 interface Shop <T> {
-  items: T[]
-  (item: T): number
+  items: T[],
+  (item: T): number,
 }
 
 class Shop <T> implements Shop <T> {

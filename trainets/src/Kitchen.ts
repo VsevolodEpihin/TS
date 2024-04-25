@@ -8,18 +8,24 @@ enum PastType {
 type selectProduct = Pasta | Pizza
 
 interface ProductType {
-  hasSauce: boolean
-  hasCheese: boolean
+  hasSauce: boolean,
+  hasCheese: boolean,
 }
 
 interface ProductPizza extends ProductType {
-  bakeTime: number
-  hasPepperoni: boolean
+  bakeTime: number,
+  hasPepperoni: boolean,
+  bake(): void,
 }
 
 interface ProductPasta extends ProductType {
-  cookTime: number
-  pastaType: string
+  cookTime: number,
+  pastaType: string,
+  cook(): void,
+}
+
+interface KitchenType{
+    makeDish(dish: selectProduct) :void
 }
 
 class Pizza implements ProductPizza {
